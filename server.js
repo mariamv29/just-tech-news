@@ -11,11 +11,12 @@ const sequelize = require('./config/connection');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use(express.static(path.join(__dirname, 'public')));
 // turn on routes
 app.use(routes);
 
 
-app.use(express.static(path.join(__dirname, 'public')));
 // turn on connection to database and server
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('Now listening'));
